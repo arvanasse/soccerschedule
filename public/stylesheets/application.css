@@ -1,0 +1,16 @@
+body {
+  background-color: #7f007f; }
+
+.container {
+  width: 960px;
+  margin: auto;
+  background-color: white; }
+
+h2 {
+  background-color: #c8c8c8;
+  padding: 0.25em 0.5em;
+  margin: 0.5em 0 0; }
+
+.tabs {
+  background-color: #7f007f;
+  margin-top: 1em; }

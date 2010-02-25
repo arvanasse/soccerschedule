@@ -1,0 +1,22 @@
+!!!
+%html{ :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %meta{ :content => "text/html; charset=iso-8859-1", "http-equiv" => "Content-Type" }
+    %meta{ :content => "text/javascript", "http-equiv" => "content-script-type" }
+
+    = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'print.css', :media => 'print'
+    <!--[if lt IE 8]>
+    = stylesheet_link_tag 'ie.css'
+    <![endif]-->
+    = stylesheet_link_tag 'plugins/tabs/screen.css', 'application.css'
+
+  %body
+    #main-content
+      .container
+        %ul.tabs
+          %li= link_to 'Schedule', schedules_url, :class=> controller_name=='schedules' ? 'selected' : nil
+          %li= link_to 'Follow', team_followers_path
+          -if can? :manage, :team
+            %li= link_to 'Teams', teams_url
+        = yield

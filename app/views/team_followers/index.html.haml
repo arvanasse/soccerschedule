@@ -1,0 +1,8 @@
+- form_for :team_follower, :url => team_followers_path do |f|
+  %ul{ :style => 'list-style: none;'}
+    - for team in @teams
+      %li
+        = f.check_box :team_id, :index=>team.id, :checked=> @team_ids.include?( team.id )
+        = f.label :team_id, team.name
+
+  = submit_tag "Update Schedules"

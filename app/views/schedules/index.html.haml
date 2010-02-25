@@ -1,0 +1,14 @@
+%h1 Scheduled Matches for Teams you Follow
+
+- for (scheduled_date, match_info) in @scheduled_dates.sort{|a, b| a.first <=> b.first }
+  .match-date.span-20.prepend-2.append-2.last
+    %h2{ :style=>'display:block;' }= scheduled_date.strftime('%B %d, %Y')
+
+    - for match in match_info.sort{|a, b| a[:time] <=> b[:time] }
+      .match-info
+        .span-3.prepend-1
+          = match[:time].strftime('%I:%M %p')
+        .span-6
+          = match[:field]
+        .span-10.last
+          = match[:match]

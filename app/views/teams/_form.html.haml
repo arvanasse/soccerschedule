@@ -1,0 +1,10 @@
+%h2= @team.new_record? ? 'New Team' : "Edit #{@team.name}"
+-form_for @team do |f|
+  %dl
+    %dt= f.label :name
+    %dd= f.text_field :name
+
+    %dt= f.label :url
+    %dd= f.text_field :url, :size=>40
+
+  = submit_tag 'Save'

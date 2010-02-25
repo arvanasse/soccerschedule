@@ -1,0 +1,20 @@
+%table
+  %thead
+    %tr
+      %th Team
+      %th Schedule Url
+      %th &nbsp;
+  %tbody
+    - if @teams.empty?
+      %tr
+        %td{:colspan=>2} No teams found
+    - for team in @teams do
+      %tr
+        %td= team.name
+        %td= team.url
+        %td
+          = link_to 'Edit', edit_team_path(team)
+          &nbsp;|&nbsp;
+          = link_to 'Delete', team_path(team), :method=>:delete
+
+= link_to 'Add Team', new_team_path

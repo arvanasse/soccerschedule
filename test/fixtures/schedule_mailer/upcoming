@@ -1,0 +1,3 @@
+ScheduleMailer#upcoming
+
+Find me in app/views/schedule_mailer/upcoming.erb

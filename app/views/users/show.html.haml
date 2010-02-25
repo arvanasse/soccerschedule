@@ -1,0 +1,6 @@
+- form_for :team_follower, :url=>user_path do |f|
+  %ul{ :style=>'list-style:none;' }
+    - for team in @teams do
+      %li
+        = f.check_box :team_id, {:index=>team.id}, team.id, false
+        = f.label :team_id, team.name, :index=>team.id, :style=>'padding-top:0.25em;'
