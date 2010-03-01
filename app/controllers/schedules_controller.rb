@@ -1,7 +1,12 @@
 class SchedulesController < ApplicationController
   def index
-    @schedule = Schedule.find( get_team_urls )
-    @scheduled_dates = @schedule.group_by{|item| item[:date] }
+    get_team_urls
+    if @team_urls.empty?
+      @scheduled_dates = [ ]
+    else
+      @schedule = Schedule.find( get_team_urls )
+      @scheduled_dates = @schedule.group_by{|item| item[:date] }
+    end
   end
 
   private

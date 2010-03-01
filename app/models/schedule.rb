@@ -6,6 +6,7 @@ class Schedule
     def find( team_urls )
       return [ ] if team_urls.empty?
       schedule = team_urls.collect do |team_url_info|
+        RAILS_DEFAULT_LOGGER.debug team_url_info
         doc = Nokogiri::HTML( open(team_url_info[:url]) )
         rows = doc.css("tr.GameRow").collect do |game_row|
           game_info = { :date=>game_row['date'].to_date }
