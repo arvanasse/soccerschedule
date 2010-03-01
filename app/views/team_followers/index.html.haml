@@ -1,3 +1,5 @@
+- if flash[:notice]
+  .notice.span-22.prepend-1.append-1= flash[:notice]
 - form_for :team_follower, :url => team_followers_path do |f|
   %ul{ :style => 'list-style: none;'}
     - for team in @teams

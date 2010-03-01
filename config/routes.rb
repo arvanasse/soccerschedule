@@ -6,5 +6,5 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :schedules, :only => :index
 
-  map.root :controller => :schedules, :action=>:index
+  map.root :controller => 'schedules', :action=> 'index'
 end
