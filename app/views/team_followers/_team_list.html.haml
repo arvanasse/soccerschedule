@@ -1,0 +1,7 @@
+- fields_for :team_follower do |f|
+  %h3= classification.nil? ? 'Unknown' : classification.name
+  %ul
+    - for team in teams_in_group
+      %li
+        = f.check_box :team_id, :index=>team.id, :checked=> @team_ids.include?( team.id )
+        = f.label :team_id, team.name, :style=>'font-weight: normal;'
