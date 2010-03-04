@@ -1,10 +1,16 @@
+%h1 Teams You Would Like to Follow
 - if flash[:notice]
   .notice.span-22.prepend-1.append-1= flash[:notice]
 - form_for :team_follower, :url => team_followers_path do |f|
-  %ul{ :style => 'list-style: none;'}
-    - for team in @teams
-      %li
-        = f.check_box :team_id, :index=>team.id, :checked=> @team_ids.include?( team.id )
-        = f.label :team_id, team.name
+  - counter = 0
+  - for (classification, teams_in_group) in @teams.group_by(&:classification)
+    - if (counter += 1) % 4 == 0
+      .team-list.span-5.prepend-1.last
+        = render :partial => 'team_list', :locals => { :classification => classification, :teams_in_group => teams_in_group }
+      .clear
+    - else
+      .team-list.span-5.prepend-1
+        = render :partial => 'team_list', :locals => { :classification => classification, :teams_in_group => teams_in_group }
 
-  = submit_tag "Update Schedules"
+  .clear
+    = submit_tag "Update Schedules", :style=>'margin: 2em;'

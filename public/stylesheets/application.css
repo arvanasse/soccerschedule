@@ -6,6 +6,12 @@ body {
   margin: auto;
   background-color: white; }
 
+h1 {
+  font-weight: bold;
+  font-size: 120%;
+  display: block;
+  text-align: center; }
+
 h2 {
   background-color: #c8c8c8;
   padding: 0.25em 0.5em;
@@ -14,3 +20,17 @@ h2 {
 .tabs {
   background-color: #7f007f;
   margin-top: 1em; }
+
+.team-list h3 {
+  font-size: 108%;
+  margin: 2em 0 0;
+  font-weight: bold;
+  display: block;
+  background: #ccc;
+  padding: 0.5em;
+  text-align: center; }
+.team-list ul {
+  list-style: none;
+  padding: 0; }
+  .team-list ul li {
+    padding: 0.25em 0; }

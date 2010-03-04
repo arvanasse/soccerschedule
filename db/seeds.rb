@@ -1,5 +1,7 @@
 User.create :name=>'Andy Vanasse', :email=>'andyvanasse@gmail.com', :password=>'6nov1993', :password_confirmation=>'6nov1993', :admin=>true
 
+['U-08 Boys', 'U-08 Girls', 'U-10 Boys', 'U-10 Girls', 'U-12 Boys', 'U-12 Girls', 'U-14 Boys', 'U-14 Girls', 'Academy/Classic'].each{|name| Classification.create :name=>name }
+
 [
   {'Thunder'        => 'http://carolinaelitesc.demosphere.com/teams/20208754/20652654-20208846/TEAM.html'},
   {'Lightning'      => 'http://carolinaelitesc.demosphere.com/teams/20208754/20652432-20208846/TEAM.html'},
@@ -44,3 +46,13 @@ User.create :name=>'Andy Vanasse', :email=>'andyvanasse@gmail.com', :password=>'
 ].each do |team_info|
   team_info.each{|team, url| Team.create :name=>team_info.keys.first, :url=>url}
 end
+
+%w{Thunder Lightning}.each{|name| Team.find_by_name(name).update_attributes(:classification_id=>Classification.find_by_name('U-08 Girls').id)}
+['Pitch Raiders', 'Rockets', 'Transformers', 'Rangers'].each{|name| Team.find_by_name(name).update_attributes(:classification_id=>Classification.find_by_name('U-08 Boys').id)}
+['Cosmos', 'Purple Thunder', 'Purple Surge', 'Purple Wave'].each{|name| Team.find_by_name(name).update_attributes(:classification_id=>Classification.find_by_name('U-10 Girls').id)}
+%w{Vipers Tigers Spurs Galaxy Wolves}.each{|name| Team.find_by_name(name).update_attributes(:classification_id=>Classification.find_by_name('U-10 Boys').id)}
+%w{Adrenaline Rovers Mustangs Dynamite Crush Cheetahs}.each{|name| Team.find_by_name(name).update_attributes(:classification_id=>Classification.find_by_name('U-12 Girls').id)}
+['Blue Kippers', 'Cobras', 'Strikers', 'Tsunami', 'Hurricanes', 'Eastside Arsenal', 'Eagles'].each{|name| Team.find_by_name(name).update_attributes(:classification_id=>Classification.find_by_name('U-12 Boys').id)}
+%w{Gladiators}.each{|name| Team.find_by_name(name).update_attributes(:classification_id=>Classification.find_by_name('U-14 Girls').id)}
+%w{Fire Gunners}.each{|name| Team.find_by_name(name).update_attributes(:classification_id=>Classification.find_by_name('U-14 Boys').id)}
+Team.find_all_by_classification_id(nil).each{|t| t.update_attributes(:classification_id=>Classification.find_by_name('Academy/Classic').id)}

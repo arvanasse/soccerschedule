@@ -9,7 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100225023743) do
+ActiveRecord::Schema.define(:version => 20100304181538) do
+
+  create_table "classifications", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "team_followers", :force => true do |t|
     t.integer  "team_id"
@@ -23,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20100225023743) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "classification_id"
   end
 
   create_table "users", :force => true do |t|
