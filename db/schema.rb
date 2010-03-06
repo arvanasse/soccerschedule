@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100304181538) do
+ActiveRecord::Schema.define(:version => 20100305193549) do
 
   create_table "classifications", :force => true do |t|
     t.string   "name"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20100304181538) do
     t.boolean  "admin"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "reminders"
   end
 
 end

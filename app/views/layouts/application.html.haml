@@ -12,11 +12,16 @@
     = stylesheet_link_tag 'plugins/tabs/screen.css', 'application.css'
 
   %body
-    #main-content
+    #header
       .container
         %ul.tabs
           %li= link_to 'Schedule', schedules_url, :class=> controller_name=='schedules' ? 'selected' : nil
           %li= link_to 'Follow', team_followers_path
           -if can? :manage, :team
             %li= link_to 'Teams', teams_url
+    #main-content
+      .container
         = yield
+    #footer
+      .container
+        = "Copyright &copy; 2010-#{Date.today.year}, Latreia, LLC"

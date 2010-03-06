@@ -14,3 +14,18 @@
 
   .clear
     = submit_tag "Update Schedules", :style=>'margin: 2em;'
+    - if current_user.is_a? Guest
+      = check_box_tag :save_schedule
+      = label_tag :save_schedule, "Also save them for the future"
+      .fieldset{:Expenseid=>'credentials', :style=>'display_attendance:none;'}
+        .legend Create Account
+        = text_field :user, :email
+
+        = label :user, :password
+        = text_field :user, :password
+
+        = label :user, :password_confirmation
+        = text_field :user, :password_confirmation
+
+        = label :user, :reminders, "Email me weekly reminders"
+        = text_field :user, :reminders
