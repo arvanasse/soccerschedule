@@ -13,7 +13,7 @@ class TeamFollowersController < ApplicationController
 
     session[:team_ids] = team_ids
 
-    unless params[:user][:email].blank?
+    unless params[:user].blank? || params[:user][:email].blank?
       user = User.new params[:user]
       UserSession.create(params[:user_session].merge(:email => user.email, :password=>user.password) ) if user.save
     end
