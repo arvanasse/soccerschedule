@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  team: 
+  url: MyString
+  expires_on: 2010-03-11
+
+two:
+  team: 
+  url: MyString
+  expires_on: 2010-03-11

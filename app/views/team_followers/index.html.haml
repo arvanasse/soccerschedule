@@ -17,15 +17,18 @@
     - if current_user.is_a? Guest
       = check_box_tag :save_schedule
       = label_tag :save_schedule, "Also save them for the future"
-      .fieldset{:Expenseid=>'credentials', :style=>'display_attendance:none;'}
+      %fieldset{:id=>'credentials', :style=>'display:none;'}
         .legend Create Account
-        = text_field :user, :email
+        - fields_for :user do |fld|
+          %dl
+            %dt= fld.label :email
+            %dd= fld.text_field :email
 
-        = label :user, :password
-        = text_field :user, :password
+            %dt= fld.label :password
+            %dd= fld.text_field :password
 
-        = label :user, :password_confirmation
-        = text_field :user, :password_confirmation
+            %dt= fld.label :password_confirmation
+            %dd= fld.text_field :password_confirmation
 
-        = label :user, :reminders, "Email me weekly reminders"
-        = text_field :user, :reminders
+            %dt= fld.check_box :reminders
+            %dd= fld.label :reminders, "Email me weekly reminders"

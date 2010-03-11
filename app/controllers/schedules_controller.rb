@@ -12,8 +12,8 @@ class SchedulesController < ApplicationController
 
   private
   def get_team_urls
-    team_ids = current_user.team_ids || session[:team_ids]  
+    team_ids = current_user.team_ids || session[:team_ids]
 
-    @team_urls = team_ids.nil? ? [ ] : Team.find(team_ids).map{|team| HashWithIndifferentAccess.new(team.attributes) }
+    @team_urls = team_ids.nil? ? [ ] : Team.find(team_ids).map{|team| team.schedule_links.map{|link| HashWithIndifferentAccess.new(link.attributes)}}.flatten
   end
 end
