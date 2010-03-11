@@ -45,6 +45,9 @@ fieldset {
   fieldset dl {
     margin: 0; }
 
+#credentials {
+  margin-top: 1em; }
+
 .team-list h3 {
   font-size: 108%;
   margin: 2em 0 0;

@@ -13,10 +13,11 @@
         = render :partial => 'team_list', :locals => { :classification => classification, :teams_in_group => teams_in_group }
 
   .clear
-    = submit_tag "Update Schedules", :style=>'margin: 2em;'
     - if current_user.is_a? Guest
-      = check_box_tag :save_schedule
-      = label_tag :save_schedule, "Also save them for the future"
+      .bump{:style=>'margin-left: 2em;'}
+        = check_box_tag :save_schedule
+        = label_tag :save_schedule, "Keep the schedules for the future"
+
       %fieldset{:id=>'credentials', :style=>'display:none;'}
         %legend Create Account
         - fields_for :user do |fld|
@@ -45,3 +46,6 @@
 
               %dt= fld.label :password_confirmation
               %dd= fld.password_field :password_confirmation
+
+    = submit_tag "Update Schedules", :style=>'margin: 2em;'
+
