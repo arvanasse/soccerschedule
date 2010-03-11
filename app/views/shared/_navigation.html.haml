@@ -1,0 +1,5 @@
+%ul.tabs
+  %li= link_to 'Follow', team_followers_path, :class=> controller_name=='team_followers' ? 'selected' : nil
+  %li= link_to 'Schedule', schedules_url, :class=> controller_name=='schedules' ? 'selected' : nil
+  -if can? :manage, :team
+    %li= link_to 'Teams', teams_url

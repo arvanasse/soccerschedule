@@ -9,18 +9,17 @@
     <!--[if lt IE 8]>
     = stylesheet_link_tag 'ie.css'
     <![endif]-->
-    = stylesheet_link_tag 'plugins/tabs/screen.css', 'application.css'
-    = javascript_include_tag 'jquery-1.4.2', 'application'
+    = stylesheet_link_tag 'plugins/tabs/screen.css', '/facebox/facebox.css', 'application.css'
+    = javascript_include_tag 'jquery-1.4.2', 'jquery.livequery', '/facebox/facebox', 'application'
 
   %body
     #header
       .container
-        %ul.tabs
-          %li= link_to 'Schedule', schedules_url, :class=> controller_name=='schedules' ? 'selected' : nil
-          %li= link_to 'Follow', team_followers_path
-          -if can? :manage, :team
-            %li= link_to 'Teams', teams_url
+        = render :partial => 'shared/login'
+        = render :partial => 'shared/navigation'
+
     #main-content
+      = image_tag 'logo.jpg', :style => 'float:left;'
       .container
         = yield
     #footer

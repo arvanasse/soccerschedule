@@ -1,0 +1,18 @@
+.login{:style=>'float:right;'}
+  - if current_user.is_a? Guest
+    - form_for :user_session, :url => session_path, :html=>{:id=>'login-form', :style=>'display:none;' } do |f|
+      %fieldset
+        %legend Login
+        %dl
+          %dt= f.label :email
+          %dd= f.text_field :email
+          %dt= f.label :password
+          %dd= f.password_field :password
+
+      = submit_tag :login
+    = link_to 'Login', '#login-form', :rel => 'facebox'
+  - else
+    %p{:style=>'margin: 0;', :class=>'quiet'}
+      = "Welcome, #{current_user.name}"
+      &nbsp;|&nbsp;
+      = link_to 'logout', session_path, :method => :delete

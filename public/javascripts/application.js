@@ -1,6 +1,3 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
-
 $(document).ready(function(){
   $('#save_schedule').click(function(){
     if( $(this).attr('checked') ){
@@ -9,4 +6,15 @@ $(document).ready(function(){
       $('#credentials').slideUp();
     }
   });
+
+  $('#show-login').click(function(){
+    $('#show-login').hide();
+    $('#login-form').slideToggle();
+    return false;
+  });
 });
+
+  $('a[rel*=facebox]').livequery(function() {
+      $(this).facebox();
+  });
+

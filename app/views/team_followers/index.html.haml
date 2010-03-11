@@ -18,17 +18,30 @@
       = check_box_tag :save_schedule
       = label_tag :save_schedule, "Also save them for the future"
       %fieldset{:id=>'credentials', :style=>'display:none;'}
-        .legend Create Account
+        %legend Create Account
         - fields_for :user do |fld|
-          %dl
-            %dt= fld.label :email
-            %dd= fld.text_field :email
+          .span-11
+            %dl
+              %dt= fld.label :name
+              %dd= fld.text_field :name
 
-            %dt= fld.label :password
-            %dd= fld.text_field :password
+              %dt= fld.label :email
+              %dd= fld.text_field :email
 
-            %dt= fld.label :password_confirmation
-            %dd= fld.text_field :password_confirmation
+              %dt
+              %dd
+                = fld.check_box :reminders
+                = fld.label :reminders, "Email me weekly reminders"
 
-            %dt= fld.check_box :reminders
-            %dd= fld.label :reminders, "Email me weekly reminders"
+              %dt
+              %dd
+                = check_box :user_session, :remember_me
+                = label :user_session, :remember_me, "Remember me on this computer"
+
+          .span-11.last
+            %dl
+              %dt= fld.label :password
+              %dd= fld.password_field :password
+
+              %dt= fld.label :password_confirmation
+              %dd= fld.password_field :password_confirmation

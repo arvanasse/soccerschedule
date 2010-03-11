@@ -11,7 +11,10 @@ class ApplicationController < ActionController::Base
 
   private
   def current_user
-    return @current_user if defined?(@current_user)
+    if defined?(@current_user)
+      @user_session = UserSession.new if @current_user.is_a?(Guest)
+      return @current_user 
+    end
     @current_user = ( current_user_session && current_user_session.user ) || Guest.new
   end
 
