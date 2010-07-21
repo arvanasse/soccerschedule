@@ -17,7 +17,7 @@ Rails::Initializer.run do |config|
   # Specify gems that this application depends on and have them installed with rake gems:install
   config.gem 'nokogiri'
   config.gem 'haml'
-  config.gem 'authlogic'
+  config.gem 'authlogic', :version => '2.1.1'
   config.gem 'cancan'
   
   # Only load the plugins named here, in the order given (default is alphabetical).

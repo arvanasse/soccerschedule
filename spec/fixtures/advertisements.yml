@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  club: 
+  name: MyString
+  description: MyString
+  state: MyString
+  url: MyString
+
+two:
+  club: 
+  name: MyString
+  description: MyString
+  state: MyString
+  url: MyString

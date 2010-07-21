@@ -9,12 +9,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100311173423) do
+ActiveRecord::Schema.define(:version => 20100721022058) do
+
+  create_table "accounts", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "advertisements", :force => true do |t|
+    t.integer  "account_id"
+    t.string   "name"
+    t.string   "description"
+    t.string   "state"
+    t.string   "url"
+    t.string   "logo_file_type"
+    t.string   "logo_content_type"
+    t.integer  "logo_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "classifications", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "account_id"
   end
 
   create_table "schedule_links", :force => true do |t|
@@ -37,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20100311173423) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "classification_id"
+    t.integer  "account_id"
   end
 
   create_table "users", :force => true do |t|
@@ -49,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20100311173423) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "reminders"
+    t.integer  "account_id"
   end
 
 end

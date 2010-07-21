@@ -1,5 +1,6 @@
 class Classification < ActiveRecord::Base
-  has_many :teams
+  belongs_to  :account
+  has_many    :teams
 
-  validates_presence_of :name
+  validates_presence_of :account_id, :name
 end
