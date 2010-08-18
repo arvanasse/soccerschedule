@@ -1,0 +1,24 @@
+%table
+  %thead
+    %tr
+      %th Company
+      %th Title
+      %th Website
+      %th Status
+      %th &nbsp;
+  %tbody
+    - if @advertisements.empty?
+      %tr
+        %td{:colspan=>5} No Ads found.
+    - for ad in @advertisements do
+      %tr
+        %td= ad.company
+        %td= ad.title
+        %td= ad.url
+        %td= ad.state
+        %td
+          = link_to 'Edit', edit_advertisement_path(ad)
+          &nbsp;|&nbsp;
+          = link_to 'Delete', advertisement_path(ad), :method => :delete
+
+= link_to 'Create Ad', new_advertisement_path

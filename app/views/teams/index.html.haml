@@ -2,7 +2,6 @@
   %thead
     %tr
       %th Team
-      %th Schedule Url
       %th &nbsp;
   %tbody
     - if @teams.empty?
@@ -11,7 +10,6 @@
     - for team in @teams do
       %tr
         %td= team.name
-        %td= team.url
         %td
           = link_to 'Edit', edit_team_path(team)
           &nbsp;|&nbsp;

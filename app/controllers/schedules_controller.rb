@@ -8,6 +8,8 @@ class SchedulesController < ApplicationController
       @schedule = Schedule.find( get_team_urls )
       @scheduled_dates = @schedule.group_by{|item| item[:date] }
     end
+
+    @advertisement = Advertisement.last
   end
 
   private

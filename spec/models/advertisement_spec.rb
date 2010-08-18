@@ -4,7 +4,9 @@ describe Advertisement do
   before(:each) do
     @valid_attributes = {
       :account => mock_model(Account, 'destroyed?'=>false),
-      :name => "value for name",
+      :company => "value for name",
+      :title => 'value for title',
+      :orientation => 'horizontalvertical',
       :description => "value for description",
       :state => "value for state",
       :url => "value for url"
@@ -15,7 +17,7 @@ describe Advertisement do
     lambda{Advertisement.create(@valid_attributes)}.should change(Advertisement, :count).by(1)
   end
 
-  [:account, :name, :description, :url].each do |required_attr|
+  [:account, :company, :url].each do |required_attr|
     it "should require a #{required_attr}" do
       @valid_attributes.delete required_attr
       lambda{Advertisement.create(@valid_attributes)}.should_not change(Advertisement, :count)

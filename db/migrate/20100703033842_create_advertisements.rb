@@ -2,12 +2,14 @@ class CreateAdvertisements < ActiveRecord::Migration
   def self.up
     create_table :advertisements do |t|
       t.references :account
-      t.string :name
+      t.string :company
+      t.string :title
       t.string :description
+      t.string :orientation
       t.string :state
       t.string :url
 
-      t.string :logo_file_type
+      t.string :logo_file_name
       t.string :logo_content_type
       t.integer :logo_size
 

@@ -1,6 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   map.resource  :session
+
   map.resources :teams
+  map.resources :advertisements
+
   map.resources :team_followers, :only =>[ :index, :create ]
   map.resources :users, :collection=>{ :guest => :get }
 

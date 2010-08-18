@@ -19,11 +19,13 @@ ActiveRecord::Schema.define(:version => 20100721022058) do
 
   create_table "advertisements", :force => true do |t|
     t.integer  "account_id"
-    t.string   "name"
+    t.string   "company"
+    t.string   "title"
     t.string   "description"
+    t.string   "orientation"
     t.string   "state"
     t.string   "url"
-    t.string   "logo_file_type"
+    t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_size"
     t.datetime "created_at"

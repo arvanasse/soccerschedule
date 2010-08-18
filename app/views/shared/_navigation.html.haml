@@ -3,3 +3,5 @@
   %li= link_to 'Schedule', schedules_url, :class=> controller_name=='schedules' ? 'selected' : nil
   -if can? :manage, :team
     %li= link_to 'Teams', teams_url
+  -if can? :manage, :advertisements
+    %li= link_to "Advertisements", advertisements_url

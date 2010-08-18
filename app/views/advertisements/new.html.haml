@@ -1,0 +1,22 @@
+- form_for @advertisement, :html => { :multipart => true } do |f|
+  - if flash[:error]
+    %p.errors= flash[:error]
+      
+
+  %dl
+    %dd= f.label :company
+    %dt= f.text_field :company
+
+    %dd= f.label :url, "Company Website"
+    %dt= f.text_field :url
+
+    %dd= f.label :title, "Title on Ad"
+    %dt= f.text_field :title
+
+    %dd= f.label :description, "Text in Ad"
+    %dt= f.text_area :description, :style => 'height: 108px;'
+
+    %dd= f.label :logo, "Logo or Image for Ad"
+    %dt= f.file_field :logo
+
+  = f.submit 'Save Ad'
