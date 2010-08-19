@@ -15,9 +15,36 @@ class AdvertisementsController < ApplicationController
         format.html{ redirect_to advertisements_path }
       else
         flash[:error] = "The ad could not be saved for the following reasons:<br/>" << @advertisement.errors.full_messages.join('<br/>')
-        logger.debug @advertisement.errors.full_messages.to_sentence
         format.html{ render :action => :new }
       end
+    end
+  end
+
+  def edit
+    @advertisement = current_user.account.advertisements.find params[:id]
+    respond_to do |format|
+      format.html{ render :action => :new }
+    end
+  end
+
+  def update
+    @advertisement = current_user.account.advertisements.find params[:id]
+    respond_to do |format|
+      if @advertisement.update_attributes params[:advertisement]
+        format.html{ redirect_to advertisements_path }
+      else
+        flash[:error] = "The ad could not be saved for the following reasons:<br/>" << @advertisement.errors.full_messages.join('<br/>')
+        format.html{ render :action => :new }
+      end
+    end
+  end
+
+  def destroy
+    @advertisement = current_user.account.advertisements.find params[:id]
+    @advertisement.destroy
+
+    respond_to do |format|
+      format.html{ redirect_to advertisements_path }
     end
   end
 end

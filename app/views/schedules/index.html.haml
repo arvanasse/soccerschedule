@@ -1,6 +1,5 @@
-%h1 Scheduled Matches for Teams you Follow
-
 .schedule.span-14.prepend-1.append-1
+  %h1 Scheduled Matches for Teams you Follow
   - for (scheduled_date, match_info) in @scheduled_dates.sort{|a, b| a.first <=> b.first }
     - if scheduled_date >= Date.today
       .match-date.span-14.last
@@ -14,10 +13,11 @@
               = match[:field]
             .span-7.last
               = match[:match]
-%a.advertisement.vertical.span-8.last{ :href => @advertisement.url, :style=>'text-decoration:none; font-weight:bold; border: 1px solid;' }
-  - unless @advertisement.title.nil?
-    %h2= @advertisement.title
-  - unless @advertisement.logo.nil?
-    = image_tag @advertisement.logo.url
-  - unless @advertisement.description.nil?
-    %p= @advertisement.description
+.advertisement.vertical.span-8.last
+  - link_to @advertisement.url do
+    - unless @advertisement.logo.nil?
+      = image_tag @advertisement.logo.url, :width => 308
+    - unless @advertisement.title.blank?
+      %h2= @advertisement.title
+    - unless @advertisement.description.blank?
+      %p= @advertisement.description

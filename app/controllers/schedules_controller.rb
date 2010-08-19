@@ -9,7 +9,7 @@ class SchedulesController < ApplicationController
       @scheduled_dates = @schedule.group_by{|item| item[:date] }
     end
 
-    @advertisement = Advertisement.last
+    @advertisement = Advertisement.random_selection
   end
 
   private

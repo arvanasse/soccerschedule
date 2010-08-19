@@ -19,4 +19,34 @@ describe Team do
       lambda{ Team.create(@valid_attributes) }.should_not change(Team, :count)
     end
   end
+
+  describe '#state' do
+    it "should default to visible" do
+      @team = Team.new(@valid_attributes)
+      @team.should be_visible
+    end
+
+    context 'when visible' do
+      before :each do
+        @team = Team.new(@valid_attributes)
+        @team.should be_visible
+      end
+
+      it "should become hidden when invoking hide" do
+        lambda{ @team.hide }.should change(@team, :state).to('hidden')
+      end
+    end
+
+    context 'when hidden' do
+      before :each do
+        @team = Team.create(@valid_attributes)
+        @team.hide
+        @team.should be_hidden
+      end
+
+      it "should become hidden when invoking hide" do
+        lambda{ @team.show }.should change(@team, :state).to('visible')
+      end
+    end
+  end
 end

@@ -53,7 +53,7 @@ fieldset {
   margin: 2em 0 0;
   font-weight: bold;
   display: block;
-  background: #ccc;
+  background: #cccccc;
   padding: 0.5em;
   text-align: center; }
 .team-list ul {
@@ -66,3 +66,15 @@ fieldset {
   color: white;
   font-weight: bold;
   text-decoration: none; }
+
+.advertisement.vertical a {
+  text-decoration: none;
+  color: black; }
+.advertisement.vertical h2 {
+  width: 100%;
+  text-align: center;
+  display: block;
+  background-color: white;
+  font-weight: bold; }
+.advertisement.vertical img {
+  width: 308px; }

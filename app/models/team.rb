@@ -10,6 +10,19 @@ class Team < ActiveRecord::Base
 
   validates_presence_of :account_id, :classification, :name
 
+  state_machine :initial => :visible do
+    state :visible
+    state :hidden
+
+    event :hide do 
+      transition :visible => :hidden
+    end
+
+    event :show do
+      transition :hidden => :visible
+    end
+  end
+
   def urls
     schedule_links.active.map(&:url)
   end
