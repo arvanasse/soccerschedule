@@ -17,8 +17,8 @@ class Schedule
 
           game_info.merge!( :time => Time.mktime(*date_parts) )
 
-          game_info.merge!( :field => scrub_text( game_row.css('#_fac a').text ) )
-          game_info.merge( :match => game_row.css(':nth-child(4) a, :nth-child(4) b, :nth-child(6) a, :nth-child(6) b').collect{|team_link| scrub_text(team_link.text)}.join(' vs ') )
+          game_info.merge!( :field => scrub_text( game_row.css('td.facility a').text ) )
+          game_info.merge( :match => game_row.css('td.tm').collect{|team_link| scrub_text(team_link.text)}.join(' vs ') )
         end
       end
 
