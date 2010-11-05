@@ -1,4 +1,4 @@
-- fields_for :team_follower do |f|
+= fields_for :team_follower do |f|
   %h3= classification.nil? ? 'Unknown' : classification.name
   %ul
     - for team in teams_in_group

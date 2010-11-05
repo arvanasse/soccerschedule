@@ -1,7 +1,7 @@
 %h1 Teams You Would Like to Follow
 - if flash[:notice]
   .notice.span-22.prepend-1.append-1= flash[:notice]
-- form_for :team_follower, :url => team_followers_path do |f|
+= form_for :team_follower, :url => team_followers_path do |f|
   - counter = 0
   - for (classification, teams_in_group) in @teams.group_by(&:classification)
     - if (counter += 1) % 4 == 0

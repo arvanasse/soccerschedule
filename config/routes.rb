@@ -1,13 +1,15 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resource  :session
+Soccerschedule::Application.routes.draw do
+  resource :session
+  resources :teams
+  resources :advertisements
+  resources :team_followers
 
-  map.resources :teams
-  map.resources :advertisements
+  resources :users do
+    collection do
+      get :guest
+    end
+  end
 
-  map.resources :team_followers, :only =>[ :index, :create ]
-  map.resources :users, :collection=>{ :guest => :get }
-
-  map.resources :schedules, :only => :index
-
-  map.root :controller => 'schedules', :action=> 'index'
+  resources :schedules
+  match '/' => 'schedules#index'
 end
