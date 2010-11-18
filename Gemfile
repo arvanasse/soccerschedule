@@ -11,7 +11,7 @@ gem 'paperclip', '2.3.5'
 gem 'state_machine', '0.9.4'
 
 # Solves the to_key problem
-gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
+gem 'authlogic', :path => File.join(File.dirname(__FILE__), '/vendor/gems/authlogic')
 
 group :development, :test do
   gem 'mysql', '2.8.1'
