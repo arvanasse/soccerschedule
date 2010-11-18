@@ -100,13 +100,13 @@ PLATFORMS
 
 DEPENDENCIES
   authlogic!
-  cancan
-  haml
-  mysql
-  nokogiri
-  paperclip
+  cancan (= 1.4.0)
+  haml (= 3.0.23)
+  mysql (= 2.8.1)
+  nokogiri (= 1.4.3.1)
+  paperclip (= 2.3.5)
   rails (= 3.0.1)
   rspec (>= 2.0.0)
   rspec-rails (>= 2.0.0)
-  state_machine
+  state_machine (= 0.9.4)
   test-unit (= 2.1.1)
