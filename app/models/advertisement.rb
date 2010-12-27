@@ -5,7 +5,7 @@ class Advertisement < ActiveRecord::Base
 
   validates_presence_of :account_id, :company, :url
 
-  named_scope :active, :conditions => { :state => 'active' }
+  scope :active, :conditions => { :state => 'active' }
 
   state_machine :initial => :pending do
     state :pending
