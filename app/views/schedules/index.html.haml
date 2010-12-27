@@ -1,5 +1,7 @@
 .schedule.span-14.prepend-1.append-1
   %h1 Scheduled Matches for Teams you Follow
+  - if flash[:notice]
+    .notice.span-14{:style=>'text-align:center;'}= flash[:notice]
   - for (scheduled_date, match_info) in @scheduled_dates.sort{|a, b| a.first <=> b.first }
     - if scheduled_date >= Date.today
       .match-date.span-14.last
