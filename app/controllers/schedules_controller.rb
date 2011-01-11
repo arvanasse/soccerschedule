@@ -2,6 +2,9 @@ class SchedulesController < ApplicationController
   def index
     get_team_urls
     case
+      when @team_ids.nil?
+        flash[:notice] = "Please select at least one team whose schedule you would like to follow"
+        redirect_to team_followers_path
       when @team_ids.empty? && @team_urls.empty?
         flash[:notice] = "Please select at least one team whose schedule you would like to follow"
         redirect_to team_followers_path
