@@ -18,7 +18,7 @@ class Schedule
             
             if Rails.env=='production'
               parts = game_row['date'].split(/\//)
-              game_date = parts.unshift( parts.pop ).join('-')
+              game_date = Date.parse( parts.unshift( parts.pop ).join('-') )
               game_info.merge!( :date => game_date, :time => Time.parse("#{game_date.strftime('%Y-%m-%d')} #{game_row['time']}") )
             else
               game_date = game_row['date'].to_date
