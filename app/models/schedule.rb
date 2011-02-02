@@ -1,6 +1,7 @@
 class Schedule
   require 'nokogiri'
   require 'open-uri'
+  require 'parsedate'
 
   class << self
     def find( team_urls )
