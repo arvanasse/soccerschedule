@@ -13,6 +13,7 @@ class Schedule
         end
         if doc
           rows = doc.css("tr.GameRow").collect do |game_row|
+            RAILS_DEFAULT_LOGGER.info "Date read: #{game_row['date']}"
             game_info = { :date=>game_row['date'].to_date }
             
             if Rails.env=='production'
