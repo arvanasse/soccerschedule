@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   helper_method :current_user_session, :current_user
+  has_mobile_fu
+
   before_filter :record_user_agent
 
   protect_from_forgery # See ActionController::RequestForgeryProtection for details

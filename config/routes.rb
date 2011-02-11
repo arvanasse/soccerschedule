@@ -1,5 +1,8 @@
 Soccerschedule::Application.routes.draw do
+  get "dashboard/show"
+
   resource :session
+  resource :dashboard
   resources :teams
   resources :advertisements
   resources :team_followers
@@ -11,5 +14,6 @@ Soccerschedule::Application.routes.draw do
   end
 
   resources :schedules
+  match 'dashbaord' => 'dashboard#show'
   match '/' => 'schedules#index'
 end

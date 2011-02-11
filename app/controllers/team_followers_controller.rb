@@ -1,5 +1,6 @@
 class TeamFollowersController < ApplicationController
   def index
+    redirect_to dashboard_path
     team_ids = current_user.team_ids || session[:team_ids]
     @team_ids = team_ids.nil? ? [ ] : team_ids.map(&:to_i) 
     @teams = Team.scoped :order => 'classification_id, name',
