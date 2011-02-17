@@ -5,15 +5,14 @@ Ext.setup({
     glossOnIcon: false,
     onReady: function() {
       var teams = new Ext.form.FormPanel({
-      });
-
-      var schedules = new Ext.grid.GridPanel({
+          title: 'Teams',
+          layout: 'fit'
       });
 
       var panel = new Ext.TabPanel({
           fullscreen: true,
           cardSwitchAnimation: 'slide',
-          items: [teams, schedules]
+          items: [teams]
       });
       
     }
