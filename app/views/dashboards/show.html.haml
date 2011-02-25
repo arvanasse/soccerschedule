@@ -1,6 +1,8 @@
 - content_for :additional_head do
   - if Rails.env == 'production'
-    = javascript_include_tag 'named_routes.js', 'sencha-touch.js', 'mobile.js'
+    = javascript_include_tag 'named_routes.js'
+    = javascript_include_tag 'sencha-touch.js'
+    = javascript_include_tag 'mobile.js'
   - else
     = javascript_include_tag js_named_routes_path
     = javascript_include_tag 'sencha-touch-debug.js', 'mobile.js'

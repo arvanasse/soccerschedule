@@ -20,8 +20,6 @@ ActiveSupport.escape_html_entities_in_json = false
 
 class NilClass
   def to_sym
-    RAILS_DEFAULT_LOGGER.info Rails.env
-
     RAILS_DEFAULT_LOGGER.info "\nNilClass#to_sym"
     caller.each do |line|
       RAILS_DEFAULT_LOGGER.info "\t#{line}"
