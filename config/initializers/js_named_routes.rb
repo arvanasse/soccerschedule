@@ -1,1 +1,0 @@
-JsNamedRoutes::Config.scope = "Routing"
