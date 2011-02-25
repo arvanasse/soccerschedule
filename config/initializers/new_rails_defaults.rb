@@ -17,3 +17,13 @@ ActiveSupport.use_standard_json_time_format = true
 # Don't escape HTML entities in JSON, leave that for the #json_escape helper.
 # if you're including raw json in an HTML page.
 ActiveSupport.escape_html_entities_in_json = false
+
+class NilClass
+  def to_sym
+    RAILS_DEFUALT_LOGGER.info "NilClass#to_sym"
+    caller.each do |line|
+      RAILS_DEFAULT_LOGGER.info "\t#{line}"
+    end
+    raise
+  end
+end
