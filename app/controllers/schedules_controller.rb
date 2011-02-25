@@ -1,4 +1,6 @@
 class SchedulesController < ApplicationController
+  before_filter :render_mobile
+
   def index
     get_team_urls
     case

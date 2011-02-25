@@ -25,4 +25,12 @@ class ApplicationController < ActionController::Base
       agent = UserAgent.find_or_create_by_name request.user_agent.to_s
       agent.update_attribute :count, agent.count + 1
     end
+
+    def mobile_required?
+      Rails.env=='development' || is_device?('iphone')  || is_device?('ipad') || is_device?('android')
+    end
+
+    def render_mobile
+      redirect_to(dashboard_path) if mobile_required?
+    end
 end

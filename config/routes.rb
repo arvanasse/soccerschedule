@@ -4,6 +4,7 @@ Soccerschedule::Application.routes.draw do
   resource :session
   resource :dashboard
   resources :teams
+  resources :classifications
   resources :advertisements
   resources :team_followers
 

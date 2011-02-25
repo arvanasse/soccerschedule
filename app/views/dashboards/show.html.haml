@@ -6,6 +6,7 @@
     - if is_device?('android')
       = stylesheet_link_tag 'android.css'
 
+    = javascript_include_tag js_named_routes_path
     - if Rails.env == 'production'
       = javascript_include_tag 'sencha-touch.js', 'mobile.js'
     - else
