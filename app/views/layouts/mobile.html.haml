@@ -1,0 +1,12 @@
+%html
+  %head
+    = stylesheet_link_tag 'sencha-touch.css'
+    - if is_device?('iphone') || is_device?('ipad')
+      = stylesheet_link_tag 'apple.css'
+    - if is_device?('android')
+      = stylesheet_link_tag 'android.css'
+
+    = yield :additional_head
+
+  %body
+    = yield
