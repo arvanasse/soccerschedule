@@ -1,15 +1,6 @@
-%html
-  %head
-    = stylesheet_link_tag 'sencha-touch.css'
-    - if is_device?('iphone') || is_device?('ipad')
-      = stylesheet_link_tag 'apple.css'
-    - if is_device?('android')
-      = stylesheet_link_tag 'android.css'
+- content_for :additional_head do
+  - if Rails.env == 'production'
+    = javascript_include_tag 'sencha-touch.js', 'mobile.js'
+  - else
+    = javascript_include_tag 'sencha-touch-debug.js', 'mobile.js'
 
-    = javascript_include_tag js_named_routes_path
-    - if Rails.env == 'production'
-      = javascript_include_tag 'sencha-touch.js', 'mobile.js'
-    - else
-      = javascript_include_tag 'sencha-touch-debug.js', 'mobile.js'
-
-  %body

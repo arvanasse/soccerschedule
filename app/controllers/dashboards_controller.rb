@@ -1,7 +1,9 @@
 class DashboardsController < ApplicationController
+  layout 'mobile'
+
   def show
     respond_to do |format|
-      format.html{ render :action=>:show, :layout => false }
+      format.html
     end
   end
 
