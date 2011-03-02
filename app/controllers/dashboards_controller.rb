@@ -3,7 +3,8 @@ class DashboardsController < ApplicationController
 
   def show
     respond_to do |format|
-      format.html
+      format.html #
+      format.mobile{ render :template => 'dashboards/show' }
     end
   end
 

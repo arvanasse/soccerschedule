@@ -18,12 +18,12 @@ ActiveSupport.use_standard_json_time_format = true
 # if you're including raw json in an HTML page.
 ActiveSupport.escape_html_entities_in_json = false
 
-class NilClass
-  def to_sym
-    RAILS_DEFAULT_LOGGER.info "\nNilClass#to_sym"
-    caller.each do |line|
-      RAILS_DEFAULT_LOGGER.info "\t#{line}"
-    end
-    raise
-  end
-end
+# class NilClass
+#   def to_sym
+#     RAILS_DEFAULT_LOGGER.info "\nNilClass#to_sym"
+#     caller.each do |line|
+#       RAILS_DEFAULT_LOGGER.info "\t#{line}"
+#     end
+#     raise
+#   end
+# end
