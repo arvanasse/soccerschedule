@@ -4,20 +4,40 @@ Ext.setup({
     icon: 'icon.png',
     glossOnIcon: false,
     onReady: function() {
-      var teamSelector = new Ext.form.FormPanel({
-          layout: 'card'
+      var teams = new Ext.Carousel({
+          title: 'Teams',
+          layout: 'fit'
       });
 
-      var teams = new Ext.Panel({
-          title: 'Teams',
-          layout: 'fit',
-          items: [ teamSelector ]
+      var loginPanel = new Ext.form.FormPanel({
+          title: 'Login',
+          items: [{
+              xtype: 'emailfield',
+              label: 'Email'
+          }, {
+              xtype: 'passwordfield',
+              label: 'Password'
+          }],
+          dockedItems: [{
+              xtype: 'toolbar',
+              dock: 'top',
+              items: [{
+                  text: 'Login',
+                  ui: 'confirm'
+              }]
+          }]
+      });
+
+
+      var schedulePanel = new Ext.Panel({
+          title: 'Schedules',
+          html: '<div id="advertisement"></div>'
       });
 
       var panel = new Ext.TabPanel({
           fullscreen: true,
           cardSwitchAnimation: 'slide',
-          items: [ teams ]
+          items: [ teams, schedulePanel, {xtype: 'spacer'}, loginPanel ]
       });
 
       Ext.Ajax.request({
@@ -30,21 +50,16 @@ Ext.setup({
 
               fields = [ ];
               Ext.each(classification.teams, function(team_info){
-                name = 'team_followers[' + team_info.id + '][team_id]';
-                fields.push({ xtype: 'checkboxfield', name: name, value: team_info.id, label: team_info.name });
+                if( team_info.state == 'visible' ){
+                    name = 'team_followers[' + team_info.id + '][team_id]';
+                    fields.push({ xtype: 'checkboxfield', labelWidth: 200, name: name, value: team_info.id, label: team_info.name });
+                }
               }, this);
 
               classificationId = 'classification_' + classification.id;
-              fs = teamSelector.add({ xtype: 'fieldset', title: classification.name, items: fields, id: classificationId  });
-
-              teamBar.push({ 
-                  text: classification.name,
-                  iconCls: 'favorite',
-                  handler: function(btn, evt){ teamSelector.setActiveItem( 'classification_'+classification.id ); }
-              });
-
+              fs = teams.add({ xtype: 'form', layout: 'auto', scroll: 'vertical', items: [{ xtype: 'fieldset', title: classification.name, items: fields, id: classificationId }] });
             }, this);
-            teams.addDocked( new Ext.TabBar({ ui: 'dark', dock: 'bottom', items: teamBar }) );
+
             teams.doLayout();
           }
       });
