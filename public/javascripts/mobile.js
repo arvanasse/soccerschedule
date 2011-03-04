@@ -95,7 +95,7 @@ Ext.setup({
                   grouped: true,
                   fullscreen: true,
                   indexBar: false,
-                  itemTpl: '{time}: {match} on {field}',
+                  itemTpl: '{time}, {field}<br />{match}',
                   emptyText: 'No games found.',
                   store: new Ext.data.JsonStore({
                       model: 'Match',
