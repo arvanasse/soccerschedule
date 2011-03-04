@@ -67,9 +67,21 @@ Ext.setup({
           }]
       });
 
+      Ext.regModel('Match', {
+          fields: [{ 
+              name: 'date', type: 'string', convert: function(val){ return Date.parseDate(val, 'c').format('F d, Y'); }
+          }, {
+              name: 'time', type: 'string', convert: function(val){ return Date.parseDate(val, 'c').format('g:i a'); }
+          }, {
+              name: 'field', type: 'string'
+          }, {
+              name: 'match', type: 'string'
+          }]
+      });
 
       var schedulePanel = new Ext.Panel({
           title: 'Schedules',
+          id: 'schedulePanel',
           layout: 'card',
           activeItem: 0,
           items: [{
@@ -78,17 +90,41 @@ Ext.setup({
               html: '<h2 style="display:block; text-align:center;" >Please support our Sponsors!</h2><h3 style="display:block; text-align:center; font-size: 80%; margin-bottom: 1em;">Schedules will be displayed shortly.</h3><div id="advertisement"></div>'
           }, {
               xtype: 'panel',
-              html: '<div id="schedules"></div>'
+              items: [{
+                  xtype: 'list',
+                  grouped: true,
+                  fullscreen: true,
+                  indexBar: false,
+                  itemTpl: '{time}: {match} on {field}',
+                  emptyText: 'No games found.',
+                  store: new Ext.data.JsonStore({
+                      model: 'Match',
+                      proxy: {
+                          type: 'ajax',
+                          url: '/schedules.json',
+                          method: 'GET'
+                      },
+                      root: 'matches',
+                      id: 'scheduleStore',
+                      getGroupString: function(record){ return record.get('date'); }
+                  })
+              }]
           }],
           listeners: {
               activate: {
                   scope: this,
                   fn: function(){
+                      Ext.getCmp('schedulePanel').setActiveItem(0); 
                       Ext.Ajax.request({
                           url: '/advertisements/random',
                           success: function(resp){
-                             target = Ext.get('advertisement'); 
-                             target.setHTML( resp.responseText );
+                              target = Ext.get('advertisement'); 
+                              target.setHTML( resp.responseText );
+                              var task = new Ext.util.DelayedTask(function(){ 
+                                  Ext.StoreMgr.get('scheduleStore').load();
+                                  Ext.getCmp('schedulePanel').setActiveItem(1); 
+                              });
+                              task.delay(15000);
                           }
                       });
                   }

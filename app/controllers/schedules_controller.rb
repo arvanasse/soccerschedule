@@ -1,6 +1,4 @@
 class SchedulesController < ApplicationController
-  before_filter :render_mobile
-
   def index
     get_team_urls
     case
@@ -23,6 +21,11 @@ class SchedulesController < ApplicationController
     end
 
     @advertisement = Advertisement.random_selection
+
+    respond_to do |format|
+      format.html{ logger.info "sending html"; render :action => :index}
+      format.json{ render :json => @schedule }
+    end
   end
 
   private

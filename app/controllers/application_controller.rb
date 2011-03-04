@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     end
 
     def mobile_required?
-      Rails.env=='development' || is_device?('iphone')  || is_device?('ipad') || is_device?('android')
+      is_device?('iphone')  || is_device?('ipad') || is_device?('android')
     end
 
     def render_mobile

@@ -16,5 +16,5 @@ Soccerschedule::Application.routes.draw do
 
   resources :schedules
   match 'dashbaord' => 'dashboard#show'
-  match '/' => 'schedules#index'
+  match '/' => 'team_followers#index'
 end
