@@ -59,7 +59,7 @@ Ext.setup({
       var panel = new Ext.TabPanel({
           fullscreen: true,
           cardSwitchAnimation: 'slide',
-          items: [ schedulePanel, teams, {xtype: 'spacer'}, loginPanel ]
+          items: [ teams, schedulePanel, {xtype: 'spacer'}, loginPanel ]
       });
 
       Ext.Ajax.request({
