@@ -3,6 +3,14 @@ class AdvertisementsController < ApplicationController
     @advertisements = Advertisement.scoped :order => :company
   end
 
+  def show
+    @advertisement = Advertisement.random_selection
+
+    respond_to do |format|
+      format.html{ render :partial => 'show' }
+    end
+  end
+
   def new
     @advertisement = Advertisement.new
   end

@@ -1,0 +1,7 @@
+- link_to @advertisement.url do
+  - unless @advertisement.logo.nil?
+    = image_tag @advertisement.logo.url, :width => 308
+  - unless @advertisement.title.blank?
+    %h2= @advertisement.title
+  - unless @advertisement.description.blank?
+    %p= @advertisement.description

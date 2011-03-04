@@ -31,13 +31,35 @@ Ext.setup({
 
       var schedulePanel = new Ext.Panel({
           title: 'Schedules',
-          html: '<div id="advertisement"></div>'
+          layout: 'card',
+          activeItem: 0,
+          items: [{
+              xtype: 'panel',
+              html: '<h2>Please support our Sponsors!</h2><div id="advertisement"></div>'
+          }, {
+              xtype: 'panel',
+              html: '<div id="schedules"></div>'
+          }],
+          listeners: {
+              activate: {
+                  scope: this,
+                  fn: function(){
+                      Ext.Ajax.request({
+                          url: '/advertisements/random',
+                          success: function(resp){
+                             target = Ext.get('advertisement'); 
+                             target.setHTML( resp.responseText );
+                          }
+                      });
+                  }
+              }
+          }
       });
 
       var panel = new Ext.TabPanel({
           fullscreen: true,
           cardSwitchAnimation: 'slide',
-          items: [ teams, schedulePanel, {xtype: 'spacer'}, loginPanel ]
+          items: [ schedulePanel, teams, {xtype: 'spacer'}, loginPanel ]
       });
 
       Ext.Ajax.request({
