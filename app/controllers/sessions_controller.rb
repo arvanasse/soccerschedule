@@ -5,10 +5,18 @@ class SessionsController < ApplicationController
 
   def create
     @user_session = UserSession.new params[:user_session]
-    if @user_session.save
-      redirect_to schedules_path
-    else
-      render :action => :new
+    
+    respond_to do |format|
+      if @user_session.save
+
+        @user_session.methods.sort.each{|m| logger.info m}
+
+        format.html{ redirect_to schedules_path }
+        format.json{ render :json => { :success => true, :user => @user_session.record.name } }
+      else
+        format.html{ render :action => :new }
+        format.json{ render :json => { :success => false } }
+      end
     end
   end
 
