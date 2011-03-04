@@ -18,7 +18,7 @@ class Schedule
             if Rails.env=='production'
               parts = game_row['date'].split(/\//)
               game_date = Date.parse( parts.unshift( parts.pop ).join('-') )
-              game_info.merge!( :date => game_date, :time => Time.parse("#{game_date.strftime('%Y-%m-%d')} #{game_row['time']}") )
+              game_info.merge!( :date => game_date, :time => Time.parse("#{game_date.strftime('%Y-%m-%d')} #{game_row['time']}").in_time_zone )
             else
               game_date = game_row['date'].to_date
 
@@ -26,7 +26,7 @@ class Schedule
               date_parts[0] = game_date.year
               date_parts[1] = game_date.month
               date_parts[2] = game_date.day
-              game_info.merge!( :date => game_date, :time => Time.mktime(*date_parts) )
+              game_info.merge!( :date => game_date, :time => Time.mktime(*date_parts).in_time_zone )
             end
 
             game_info.merge!( :field => scrub_text( game_row.css('td.facility a').text ) )
