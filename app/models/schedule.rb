@@ -26,7 +26,7 @@ class Schedule
               date_parts[0] = game_date.year
               date_parts[1] = game_date.month
               date_parts[2] = game_date.day
-              game_info.merge!( :date => game_date, :time => Time.mktime(*date_parts).in_time_zone )
+              game_info.merge!( :date => game_date, :time => Time.local(*date_parts).in_time_zone )
             end
 
             game_info.merge!( :field => scrub_text( game_row.css('td.facility a').text ) )
