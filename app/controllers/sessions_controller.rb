@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
         @user_session.methods.sort.each{|m| logger.info m}
 
         format.html{ redirect_to schedules_path }
-        format.json{ render :json => { :success => true, :user => @user_session.record.name } }
+        format.json{ render :json => { :success => true, :user => @user_session.record.name, :team_ids => @user_session.record.team_ids } }
       else
         format.html{ render :action => :new }
         format.json{ render :json => { :success => false } }

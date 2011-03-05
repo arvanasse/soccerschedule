@@ -5,6 +5,7 @@ Ext.setup({
     glossOnIcon: false,
     onReady: function() {
       var loggedIn = false;
+      var team_ids = [ ];
 
       var teams = new Ext.Carousel({
           title: 'Teams',
@@ -42,6 +43,11 @@ Ext.setup({
                               Ext.get('user-name').setHTML('You are logged in as ' + result.user );
                               Ext.getCmp('loginButton').hide();
                               Ext.getCmp('logoutButton').show();
+
+                              Ext.each(result.team_ids, function(team_id){
+                                  Ext.getCmp('team-'+team_id).check();
+                              }, this);
+                              team_ids = result.teams_ids;
                           },
                           failure: function(){ Ext.Msg.alert('Login Failed', 'You could not be logged in with the information provided.', Ext.emptyFn); }
                       });
@@ -60,6 +66,9 @@ Ext.setup({
                               Ext.get('user-name').setHTML('' );
                               Ext.getCmp('loginButton').show();
                               Ext.getCmp('logoutButton').hide();
+
+                              loggedIn = false;
+                              team_ids = [ ];
                           }
                       });
                   }
@@ -152,7 +161,34 @@ Ext.setup({
               Ext.each(classification.teams, function(team_info){
                 if( team_info.state == 'visible' ){
                     name = 'team_followers[' + team_info.id + '][team_id]';
-                    fields.push({ xtype: 'checkboxfield', labelWidth: 200, name: name, value: team_info.id, label: team_info.name });
+                    fields.push({ 
+                        xtype: 'checkboxfield', 
+                        labelWidth: 200, 
+                        name: name, 
+                        id: 'team-'+team_info.id, 
+                        value: team_info.id, 
+                        label: team_info.name,
+                        listeners: {
+                            check: {
+                                scope: this,
+                                fn: function(chk){ 
+                                    Ext.Ajax.request({
+                                        url: '/team_followers.json',
+                                        jsonData: { team_follower: { team_id: team_info.id } }
+                                    });
+                                }
+                            },
+                            uncheck: {
+                                scope: this,
+                                fn: function(chk){ 
+                                    Ext.Ajax.request({
+                                        url: '/team_followers/' + team_info.id + '.json',
+                                        method: 'DELETE'
+                                    });
+                                }
+                            }
+                        } 
+                    });
                 }
               }, this);
 
