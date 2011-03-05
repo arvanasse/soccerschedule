@@ -29,6 +29,7 @@ class Schedule
               game_info.merge!( :date => game_date, :time => Time.mktime(*date_parts))
             end
 
+            game_info.merge!( :game_time => game_info[:time].strftime('%l:%M %p') )
             game_info.merge!( :field => scrub_text( game_row.css('td.facility a').text ) )
             game_info.merge( :match => game_row.css('td.tm').collect{|team_link| scrub_text(team_link.text)}.join(' vs ') )
           end

@@ -73,6 +73,8 @@ Ext.setup({
           }, {
               name: 'time', type: 'string', convert: function(val){ return Date.parseDate(val, 'c').format('g:i a'); }
           }, {
+              name: 'game_time', type: 'string'
+          }, {
               name: 'field', type: 'string'
           }, {
               name: 'match', type: 'string'
@@ -95,7 +97,7 @@ Ext.setup({
                   grouped: true,
                   fullscreen: true,
                   indexBar: false,
-                  itemTpl: '{time}, {field}<br />{match}',
+                  itemTpl: '{game_time}, {field}<br />{match}',
                   emptyText: 'No games found.',
                   store: new Ext.data.JsonStore({
                       model: 'Match',
