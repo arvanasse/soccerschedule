@@ -1,4 +1,4 @@
-class Schedule
+class ScheduleScysa
   require 'nokogiri'
   require 'open-uri'
 
@@ -30,7 +30,9 @@ class Schedule
 
           game_info.merge!( :game_time => game_info[:time].strftime('%l:%M %p') )
           game_info.merge!( :field => scrub_text( game_row.css('td.facility a').text ) )
-          game_info.merge( :match => game_row.css('td.tm').collect{|team_link| scrub_text(team_link.text)}.join(' vs ') )
+
+          teams = [ game_row.css('td.this-tm').text, game_row.css('td.tm a').text ]
+          game_info.merge!( :match => teams.join(' vs ') )
         end
       else
         [ ]

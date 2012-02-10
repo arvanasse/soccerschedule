@@ -12,7 +12,11 @@ class SchedulesController < ApplicationController
         flash[:notice] = "No active schedules for any of the selected teams"
         @schedule = @scheduled_dates = [ ]
       else
-        @schedule = Schedule.find( get_team_urls )
+        urls = get_team_urls
+        @schedule = ScheduleParserFactory.find( get_team_urls )
+
+        logger.info "Results\n#{@schedule.inspect}\n"
+
         @scheduled_dates = @schedule.group_by{|item| item[:date] }
     end
 
@@ -29,9 +33,9 @@ class SchedulesController < ApplicationController
   end
 
   private
-  def get_team_urls
-    @team_ids = current_user.team_ids || session[:team_ids]
+    def get_team_urls
+      @team_ids = current_user.team_ids || session[:team_ids]
 
-    @team_urls = @team_ids.nil? ? [ ] : Team.find(@team_ids).map{|team| team.schedule_links.active.map{|link| HashWithIndifferentAccess.new(link.attributes)}}.flatten
-  end
+      @team_urls = @team_ids.nil? ? [ ] : Team.find(@team_ids).map{|team| team.schedule_links.active.map{|link| HashWithIndifferentAccess.new(link.attributes)}}.flatten
+    end
 end
