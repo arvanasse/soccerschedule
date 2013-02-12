@@ -14,21 +14,18 @@ class SchedulesController < ApplicationController
       else
         urls = get_team_urls
         @schedule = ScheduleParserFactory.find( get_team_urls )
-
-        logger.info "Results\n#{@schedule.inspect}\n"
-
-        @scheduled_dates = @schedule.group_by{|item| item[:date] }
-    end
-
-    if @team_urls.empty?
-    else
     end
 
     @advertisement = Advertisement.random_selection
 
     respond_to do |format|
-      format.html{ logger.info "sending html"; render :action => :index}
-      format.json{ render :json => @schedule }
+      format.html{ 
+        @scheduled_dates = @schedule.group_by{|item| item[:date] }
+        render :action => :index
+      }
+      format.json{ 
+        render :json => { :matches => @schedule } 
+      }
     end
   end
 
