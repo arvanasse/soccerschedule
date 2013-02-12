@@ -1,6 +1,7 @@
 class SchedulesController < ApplicationController
   def index
     get_team_urls
+
     case
       when @team_ids.nil?
         flash[:notice] = "Please select at least one team whose schedule you would like to follow"
@@ -30,9 +31,13 @@ class SchedulesController < ApplicationController
   end
 
   private
-    def get_team_urls
+    def get_team_ids
       @team_ids = current_user.team_ids || session[:team_ids]
+      Rails.logger.info "Working with team ids #{@team_ids.to_sentence}"
+    end
 
+    def get_team_urls
+      get_team_ids
       @team_urls = @team_ids.nil? ? [ ] : Team.find(@team_ids).map{|team| team.schedule_links.active.map{|link| HashWithIndifferentAccess.new(link.attributes)}}.flatten
     end
 end
