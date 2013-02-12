@@ -78,9 +78,9 @@ Ext.setup({
 
       Ext.regModel('Match', {
           fields: [{ 
-              name: 'date', type: 'string', convert: function(val){ return Date.parseDate(val, 'c').format('F d, Y'); }
+              name: 'date', type: 'date', convert: function(val){ return Date.parseDate(val, 'c').format('F d, Y'); }
           }, {
-              name: 'time', type: 'string', convert: function(val){ return Date.parseDate(val, 'c').format('g:i a'); }
+              name: 'time', type: 'date', convert: function(val){ return Date.parseDate(val, 'c').format('g:i a'); }
           }, {
               name: 'game_time', type: 'string'
           }, {
@@ -115,7 +115,6 @@ Ext.setup({
                           url: '/schedules.json',
                           method: 'GET'
                       },
-                      root: 'matches',
                       id: 'scheduleStore',
                       getGroupString: function(record){ return record.get('date'); }
                   })
