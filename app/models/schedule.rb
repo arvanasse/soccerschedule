@@ -39,10 +39,7 @@ class Schedule
  
             game_info.merge!( :field => scrub_text( game_row.css('td span.tmcode').text ) )
 
-            game_info.merge!( :match => game_row.css('td.schedtm').collect{|team_link| scrub_text(team_link.text)}.join(' vs ') )
-            Rails.logger.info game_info.inspect
-
-            return game_info
+            game_info.merge( :match => game_row.css('td.schedtm').collect{|team_link| scrub_text(team_link.text)}.join(' vs ') )
           end
         end
       else
