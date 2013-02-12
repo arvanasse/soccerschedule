@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 gem 'rails', '~>3.2.1'
 
-gem 'nokogiri', '1.4.3.1'
+gem 'nokogiri', '~>1.5'
 gem 'haml', '~>3.0'
 gem 'sass', '~>3.0'
 gem 'cancan', '1.4.0'
