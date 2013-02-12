@@ -24,7 +24,7 @@ class SchedulesController < ApplicationController
         render :action => :index
       }
       format.json{ 
-        render :json => { :matches => @schedule } 
+        render :json => @schedule
       }
     end
   end
