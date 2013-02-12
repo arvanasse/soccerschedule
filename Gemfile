@@ -1,14 +1,15 @@
 source 'http://rubygems.org'
-gem 'rails', '3.0.1'
+gem 'rails', '~>3.2.1'
 
 gem 'nokogiri', '1.4.3.1'
-gem 'haml', '3.0.23'
+gem 'haml', '~>3.0'
+gem 'sass', '~>3.0'
 gem 'cancan', '1.4.0'
-gem 'paperclip', '2.3.5'
+gem 'paperclip', '~>3.4.0'
 gem 'state_machine', '0.9.4'
 
 # Solves the to_key problem
-gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
+gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"
  
 
 group :development, :test do

@@ -1,1 +1,7 @@
-rvm ruby-1.8.7-p302@rails3
+
+if [[ -d "${rvm_path:-$HOME/.rvm}/environments" \
+  && -s "${rvm_path:-$HOME/.rvm}/environments/ruby-1.9.2-p290@rails3" ]] ; then
+  \. "${rvm_path:-$HOME/.rvm}/environments/ruby-1.9.2-p290@rails3"
+else
+  rvm --create  "ruby-1.9.2-p290@rails3"
+fi
