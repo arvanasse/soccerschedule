@@ -33,7 +33,6 @@ class SchedulesController < ApplicationController
   private
     def get_team_ids
       @team_ids = current_user.team_ids || session[:team_ids]
-      Rails.logger.info "Working with team ids #{@team_ids.to_sentence}"
     end
 
     def get_team_urls
