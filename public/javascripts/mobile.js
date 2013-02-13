@@ -114,7 +114,7 @@ Ext.setup({
                       proxy: {
                           type: 'ajax',
                           url: '/schedules.json',
-                          jsonData: { team_ids: Ext.getCmp('schedulePanel').team_ids },
+                          jsonData: { team_ids: this.team_ids },
                           method: 'GET'
                       },
                       id: 'scheduleStore',
