@@ -30,16 +30,7 @@ class TeamFollowersController < ApplicationController
         redirect_to schedules_path 
       }
       format.json{
-        if session[:team_ids].nil?
-          session[:team_ids] = current_user.is_a?(Guest) ? [ ] : current_user.team_ids
-        end
-
-        Rails.logger.info "Added #{params[:team_follower][:team_id]} to #{session[:team_ids]}"
-
-        session[:team_ids] << params[:team_follower][:team_id].to_i
-        session[:team_ids].uniq!
-        Rails.logger.info "Team ids are now #{session[:team_ids].to_sentence}"
-
+        session[:team_ids] = params[:id]
         unless current_user.is_a? Guest
           current_user.team_ids = session[:team_ids]
         end
@@ -49,18 +40,20 @@ class TeamFollowersController < ApplicationController
   end
 
   def destroy
-    if session[:team_ids].nil?  
-      session[:team_ids] = current_user.is_a?(Guest) ? [ ] : current_user.team_ids
+    respond_to do |format|
+      format.json{
+        session[:team_ids] = params[:id]
+        render :json => { :success => true }
+      }
+      format.html{
+        session[:team_ids] ||= current_user.is_a?(Guest) ? [ ] : current_user.team_ids
+        session[:team_ids].delete params[:id].to_i
+
+        unless current_user.is_a? Guest
+          current_user.team_ids = session[:team_ids]
+        end
+        render :json => { :success => true }
+      }
     end
-    Rails.logger.info "Removed #{params[:team_follower][:team_id]} from #{session[:team_ids]}"
-
-    session[:team_ids].delete params[:id].to_i
-    Rails.logger.info "Team ids are now #{session[:team_ids].to_sentence}"
-
-    unless current_user.is_a? Guest
-      current_user.team_ids = session[:team_ids]
-    end
-
-    render :json => { :success => true }
   end
 end
