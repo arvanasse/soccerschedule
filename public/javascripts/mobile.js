@@ -134,13 +134,9 @@ Ext.setup({
                               target.setHTML( resp.responseText );
                               var task = new Ext.util.DelayedTask(function(){ 
                                   store = Ext.StoreMgr.get('scheduleStore');
+                                  pnl = Ext.getCmp('schedulePanel');
 
-                                  url = '/schedules.json?team_ids=';
-                                  Ext.Array.each(Ext.getCmp('schedulePanel').team_ids, function(team_id){
-                                      url += team_id + ',';
-                                  });
-
-                                  store.getProxy().url = url;
+                                  store.getProxy().url ='/schedules.json?team_ids=' + pnl.team_ids.toString();
                                   store.load();
 
                                   Ext.getCmp('schedulePanel').setActiveItem(1); 

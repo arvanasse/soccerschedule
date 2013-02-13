@@ -1,15 +1,24 @@
 class SchedulesController < ApplicationController
   def index
+    if params[:team_ids]
+      session[:team_ids] = params[:team_ids].split(/,/).map(&:to_i) || session[:team_ids]
+    end
     get_team_urls
 
     case
       when @team_ids.nil?
         flash[:notice] = "Please select at least one team whose schedule you would like to follow"
-        redirect_to team_followers_path
+        respond_to do |format|
+          format.html{ redirect_to team_followers_path }
+          format.json{ render :json => [] }
+        end
         return
       when @team_ids.empty? && @team_urls.empty?
         flash[:notice] = "Please select at least one team whose schedule you would like to follow"
-        redirect_to team_followers_path
+        respond_to do |format|
+          format.html{ redirect_to team_followers_path }
+          format.json{ render :json => [] }
+        end
         return
       when !@team_ids.empty? && @team_urls.empty?
         flash[:notice] = "No active schedules for any of the selected teams"
