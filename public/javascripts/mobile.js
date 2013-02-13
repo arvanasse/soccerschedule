@@ -95,6 +95,7 @@ Ext.setup({
           id: 'schedulePanel',
           layout: 'card',
           activeItem: 0,
+          team_ids: [],
           items: [{
               xtype: 'panel',
               scroll: 'vertical',
@@ -171,18 +172,19 @@ Ext.setup({
                             check: {
                                 scope: this,
                                 fn: function(chk){ 
+                                    schedulePanel.team_ids.push(team_info.id);
                                     Ext.Ajax.request({
                                         url: '/team_followers.json',
-                                        jsonData: { team_follower: { team_id: team_info.id } }
+                                        jsonData: { team_follower: { team_id: schedulePanel.team_ids } }
                                     });
                                 }
                             },
                             uncheck: {
                                 scope: this,
                                 fn: function(chk){ 
+                                    schedulePanel.team_ids.splice(schedulePanel.team_ids.indexOf(team_info.id), 1);
                                     Ext.Ajax.request({
                                         url: '/team_followers/' + team_info.id + '.json',
-                                        jsonData: { team_follower: { team_id: team_info.id } },
                                         method: 'DELETE'
                                     });
                                 }
