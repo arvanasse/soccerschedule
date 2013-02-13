@@ -14,12 +14,12 @@ gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"
 
 group :development, :test do
   gem 'mysql', '2.8.1'
-  gem 'rspec-rails', '>=2.0.0'
+  gem 'rspec-rails'
 end
 
 group :test do
-  gem 'test-unit', '2.1.1'
-  gem 'rspec', '>=2.0.0'
+  gem 'test-unit'
+  gem 'rspec'
 end
 
 group :staging, :production do
