@@ -182,6 +182,7 @@ Ext.setup({
                                 fn: function(chk){ 
                                     Ext.Ajax.request({
                                         url: '/team_followers/' + team_info.id + '.json',
+                                        jsonData: { team_follower: { team_id: team_info.id } },
                                         method: 'DELETE'
                                     });
                                 }
