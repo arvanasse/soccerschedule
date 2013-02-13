@@ -133,10 +133,19 @@ Ext.setup({
                               target = Ext.get('advertisement'); 
                               target.setHTML( resp.responseText );
                               var task = new Ext.util.DelayedTask(function(){ 
-                                  Ext.StoreMgr.get('scheduleStore').load();
+                                  store = Ext.StoreMgr.get('scheduleStore');
+
+                                  url = '/schedules.json?team_ids=';
+                                  Ext.Array.each(schedulePanel.team_ids, function(team_id){
+                                      url += team_id + ',';
+                                  });
+
+                                  store.getProxy().url = url;
+                                  store.load();
+
                                   Ext.getCmp('schedulePanel').setActiveItem(1); 
                               });
-                              task.delay(15000);
+                              task.delay(10000);
                           }
                       });
                   }

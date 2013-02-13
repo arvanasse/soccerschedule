@@ -6,9 +6,11 @@ class SchedulesController < ApplicationController
       when @team_ids.nil?
         flash[:notice] = "Please select at least one team whose schedule you would like to follow"
         redirect_to team_followers_path
+        return
       when @team_ids.empty? && @team_urls.empty?
         flash[:notice] = "Please select at least one team whose schedule you would like to follow"
         redirect_to team_followers_path
+        return
       when !@team_ids.empty? && @team_urls.empty?
         flash[:notice] = "No active schedules for any of the selected teams"
         @schedule = @scheduled_dates = [ ]
