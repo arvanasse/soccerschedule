@@ -136,7 +136,7 @@ Ext.setup({
                                   store = Ext.StoreMgr.get('scheduleStore');
                                   pnl = Ext.getCmp('schedulePanel');
 
-                                  store.getProxy().url ='/schedules.json?team_ids=' + pnl.team_ids.toString();
+                                  store.getProxy().url ='/schedules.json?team_ids=' + Ext.urlEncode( pnl.team_ids.toString() );
                                   store.load();
 
                                   Ext.getCmp('schedulePanel').setActiveItem(1); 
