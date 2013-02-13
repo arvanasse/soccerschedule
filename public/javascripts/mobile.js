@@ -136,7 +136,7 @@ Ext.setup({
                                   store = Ext.StoreMgr.get('scheduleStore');
 
                                   url = '/schedules.json?team_ids=';
-                                  Ext.Array.each(schedulePanel.team_ids, function(team_id){
+                                  Ext.Array.each(Ext.getCmp('schedulePanel').team_ids, function(team_id){
                                       url += team_id + ',';
                                   });
 
