@@ -36,7 +36,7 @@ class SchedulesController < ApplicationController
         render :action => :index
       }
       format.json{ 
-        render :json => @schedule
+        render :json => @schedule.sort{|a,b| a[:time]<=>b[:time] }
       }
     end
   end
